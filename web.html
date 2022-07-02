@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>WELCOME</title>
+    <link href="../CSS/web.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <a href="home page">
+                 <img src="Logo.png" alt="HOME" width="250px" height="100px">
+            </a>
+            <ul>
+                <li><a href="https://rhymtech.com/">Website</a></li>
+            </ul>
+        </div>
+    </div>
+<form class="box" action="index.html" method="post">
+    <h1>WELCOME TO RHYM TECHNOLOGY</h1>
+    <h3><p>Enabling "Secure Business"</p></h3>
+    <button href="C:\Users\venka\OneDrive\Desktop\page2.html">CRS</button>
+    <button href="C:\Users\venka\OneDrive\Desktop\page22.html">RS</button>
+    <button href="C:\Users\venka\OneDrive\Desktop\page222.html">TIP</button>
+    <button href="C:\Users\venka\OneDrive\Desktop\page2222.html">RHYM ISP</button>
+</form>
+<script>
+     let users = {
+    "users": []
+}
+
+fetch('http://localhost:8000/users')
+  .then(response => response.json())
+  .then(data => {
+    users.users = data.users
+    console.log(users)
+  });
+</script>
+</body>
+</html>
