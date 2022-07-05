@@ -79,13 +79,30 @@ body
     color:white;
     border-radius: 24px;
     transition: 0.25s;
-    cursor:pointer;
 }
-.box  button{
+.box  button a{
     text-decoration: none;
     color: white;
     text-transform: uppercase;
 }
+
+.box button:disabled a{
+    text-decoration: none;
+    color: red;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
 .box button:hover{
     background: #2ecc71;
+    cursor:pointer;
+}
+
+.box button:hover:disabled{
+    background: none;
+    cursor: not-allowed;
+}
+
+.box button:disabled a{
+    pointer-events: none;
 }

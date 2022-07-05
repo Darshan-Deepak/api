@@ -5,23 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RHYM TECH LOGIN</title>
-    <script type="text/javascript" src="../JS/login.js"></script>
+    <!-- <script type="text/javascript" src="../JS/login.js"></script> -->
     <link href="./css/style_login.css" rel="stylesheet"/>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="cyber">
         <div class="form-box">
             <div class="text_box">WELCOME TO RHYM KNOWLEDGE PORTAL</div>
-            <div class="bbutton">
-                <div id="btn"></div>
-                <button type="button" class="toggle_btn" onclick="user()" >USER</button>
-                <button type="button" class="toggle_btn" onclick="admin()" >ADMIN</button>
-            </div>
+        
             <form id="user" class="input_text" method="POST">
             
-                <input id = "username" type="text" class="input_field" placeholder="Email id" required><br>
+                <input id = "username" type="text" class="input_field" placeholder="user id" required><br>
                 <input id = "password" type="password" class="input_field" placeholder="Password" required><br>
-                <button type="submit" class="submit_btn" href="#" ><a id="redirect">LOGIN as User</a></button>
+                <button type="submit" class="submit_btn" href="#" ><a id="redirect">LOGIN</a></button>
                 <input type="checkbox" class="checkbox">
                 <label for="checkbox" class="p1">Remember Me</label>
                 <a href="./forget.html" class="p2"><p>Forgot Password?</p></a>
@@ -29,21 +26,68 @@
                     Don't have an account? | <a href="./register.html" class="p3" target="blank">REGISTER</a>
                 </p>
             </form>
-            <form id="admin" class="input_text">
-                <input id = "adminname"  type="text" class="input_field" placeholder="Email id" required><br>
-                <input id = "adminpassword" type="password" class="input_field" placeholder="Password" required><br>
-                <button type="submit" class="submit_btn" href="#" >LOGIN as Admin</button>
-                <input type="checkbox" class="checkbox">
-                <label for="checkbox" class="p1">Remember Me</label>
-                <a href="./forget.html" class="p2"><p>Forgot Password?</p></a>
-                <p class="account">
-                    Don't have an account? | <a href="./" class="p3" target="blank">REGISTER</a>
-                </p>
-            </form>  
+              
             
         </div>
     </div>
     <script>
+        let users = [
+];
+
+fetch('http://localhost:8000/users')
+          .then((response) => response.json())
+          .then((data) => {
+            users = data.users;
+            console.log(users);
+          });
+
+// axios.get('http://localhost:8000/users')
+//   .then(response => {
+//     users = response.data
+//     console.log(users)
+//   });
+
+  const userForm = document.getElementById('user')
+  const userName = document.getElementById('username')
+  const userPassword = document.getElementById('password')
+
+  userForm.addEventListener("submit", (e) => {
+    const userNameValue = userName.value;
+    const passwordValue = userPassword.value;
+    for (let user of users) {
+      if (
+        user.username === userNameValue &&
+        passwordValue === user.password
+      ) {
+        localStorage.setItem("username", user.username);
+        localStorage.setItem("password", user.password);
+        localStorage.setItem("adminoruser", user.adminoruser);
+        userForm.action = "http://localhost:3000/web.html";
+        console.log(user.username + " success");
+        break;
+      }
+    }
+  });
+
+
+
+  let x = document.getElementById("user");
+  let y = document.getElementById("admin");
+  let z = document.getElementById("btn");
+
+ function admin(){
+  x.style.left = "-400px";
+  y.style.left ="50px";
+  z.style.left ="110px";
+}
+function user(){
+  x.style.left = "50px";
+  y.style.left ="450px";
+  z.style.left ="0px";
+}
+
+
+            
         
     </script>
 </body>
